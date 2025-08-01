@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import * as service from "../services/stockExit.service";
+import { Request, Response } from 'express';
+import * as service from '../services/stockExit.service';
 
 export const getAll = async (_req: Request, res: Response) => {
   const exits = await service.getAllExits();

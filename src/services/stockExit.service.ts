@@ -1,12 +1,12 @@
-import { prisma } from "../utils/prisma";
-import { StockExitSchema } from "../schemas/stockExit.schema";
-import { StockExitUpdateSchema } from "../schemas/stockExitUpdate.schema";
-import { createMovement } from "./stockMovement.service";
+import { prisma } from '../utils/prisma';
+import { StockExitSchema } from '../schemas/stockExit.schema';
+import { StockExitUpdateSchema } from '../schemas/stockExitUpdate.schema';
+import { createMovement } from './stockMovement.service';
 import {
   decrementProductStock,
   incrementProductStock,
   checkProductExists,
-} from "../utils/productClient";
+} from '../utils/productClient';
 
 // Crear una nueva salida
 export const createExit = async (data: unknown) => {
@@ -14,7 +14,7 @@ export const createExit = async (data: unknown) => {
 
   // Validar existencia del producto
   const exists = await checkProductExists(validated.productId);
-  if (!exists) throw new Error("El producto no existe.");
+  if (!exists) throw new Error('El producto no existe.');
 
   const exit = await prisma.stockExit.create({
     data: validated,
@@ -23,7 +23,7 @@ export const createExit = async (data: unknown) => {
   await decrementProductStock(validated.productId, validated.quantity);
 
   await createMovement({
-    type: "exit",
+    type: 'exit',
     productId: validated.productId,
     quantity: validated.quantity,
   });
@@ -33,7 +33,7 @@ export const createExit = async (data: unknown) => {
 
 // Obtener todas las salidas
 export const getAllExits = async () => {
-  return prisma.stockExit.findMany({ orderBy: { createdAt: "desc" } });
+  return prisma.stockExit.findMany({ orderBy: { createdAt: 'desc' } });
 };
 
 // Actualizar una salida
@@ -42,12 +42,12 @@ export const updateExit = async (id: string, data: unknown) => {
 
   const existing = await prisma.stockExit.findUnique({ where: { id } });
   if (!existing) {
-    throw new Error("Salida de stock no encontrada.");
+    throw new Error('Salida de stock no encontrada.');
   }
 
   // Validar existencia del producto
   const exists = await checkProductExists(existing.productId);
-  if (!exists) throw new Error("El producto no existe.");
+  if (!exists) throw new Error('El producto no existe.');
 
   const difference = validated.quantity - existing.quantity;
 

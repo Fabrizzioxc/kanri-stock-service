@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import * as service from "../services/stockEntry.service";
+import { Request, Response } from 'express';
+import * as service from '../services/stockEntry.service';
 
 export const create = async (req: Request, res: Response) => {
   try {
@@ -15,7 +15,7 @@ export const getAll = async (_req: Request, res: Response) => {
     const entries = await service.getAllEntries();
     res.json(entries);
   } catch (error: any) {
-    res.status(500).json({ error: "Error al obtener las entradas" });
+    res.status(500).json({ error: 'Error al obtener las entradas' });
   }
 };
 

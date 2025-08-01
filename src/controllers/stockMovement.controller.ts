@@ -1,6 +1,6 @@
 // src/controllers/stockMovement.controller.ts
-import { Request, Response } from "express";
-import * as service from "../services/stockMovement.service";
+import { Request, Response } from 'express';
+import * as service from '../services/stockMovement.service';
 
 export const getAll = async (_: Request, res: Response) => {
   const movements = await service.getAll();
@@ -9,7 +9,7 @@ export const getAll = async (_: Request, res: Response) => {
 
 export const getById = async (req: Request, res: Response) => {
   const movement = await service.getById(req.params.id);
-  if (!movement) return res.status(404).json({ message: "Not found" });
+  if (!movement) return res.status(404).json({ message: 'Not found' });
   return res.json(movement);
 };
 

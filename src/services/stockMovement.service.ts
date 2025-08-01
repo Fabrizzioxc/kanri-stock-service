@@ -1,9 +1,9 @@
 // src/services/stockMovement.service.ts
-import { prisma } from "../utils/prisma";
-import { StockMovementSchema, StockMovementUpdateSchema } from "../schemas/stockMovement.schema";
+import { prisma } from '../utils/prisma';
+import { StockMovementSchema, StockMovementUpdateSchema } from '../schemas/stockMovement.schema';
 
 export const getAll = () => {
-  return prisma.stockMovement.findMany({ orderBy: { createdAt: "desc" } });
+  return prisma.stockMovement.findMany({ orderBy: { createdAt: 'desc' } });
 };
 
 export const getById = (id: string) => {

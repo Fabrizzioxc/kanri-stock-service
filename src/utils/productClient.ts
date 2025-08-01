@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const PRODUCT_SERVICE_URL = "http://localhost:3001"; // Ajusta si usas Docker
+const PRODUCT_SERVICE_URL = 'http://localhost:3001'; // Ajusta si usas Docker
 
 export const getProductStock = async (productId: string): Promise<number> => {
   const res = await axios.get<{ stock: number }>(`${PRODUCT_SERVICE_URL}/products/${productId}`);
@@ -22,6 +22,6 @@ export const checkProductExists = async (productId: string): Promise<boolean> =>
     return true;
   } catch (error: any) {
     if (error.response?.status === 404) return false;
-    throw new Error("Error al verificar producto: " + error.message);
+    throw new Error('Error al verificar producto: ' + error.message);
   }
 };
